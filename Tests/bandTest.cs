@@ -12,6 +12,19 @@ namespace BandTracker
       // DBConfiguration.ConnectionString = "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=band_tracker;Integrated Security=SSPI;";
       DBConfiguration.ConnectionString = "Data Source=GAMING-PC;Initial Catalog=band_tracker;Integrated Security=SSPI;";
     }
-    
+
+    [Fact]
+    public void CheckIfDataBaseIsEmpty_Empty_Band()
+    {
+      List<Band> testList = Venue.GetAll();
+      List<Band> controlList = new List<Band>{};
+
+      Assert.Equal(controlList, testList);
+    }
+
+    public void Dispose()
+    {
+      Band.DeleteAll();
+    }
   }
 }
