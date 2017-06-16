@@ -22,6 +22,16 @@ namespace BandTracker
       Assert.Equal(controlList, testList);
     }
 
+    [Fact]
+    public void SaveToDataBase_Band_Band()
+    {
+      Band controlBand = new Band("Nirvana");
+      controlBand.Save();
+
+      Band newBand = Band.GetAll()[0];
+      Assert.Equal(controlBand, newBand);
+    }
+
     public void Dispose()
     {
       Band.DeleteAll();
