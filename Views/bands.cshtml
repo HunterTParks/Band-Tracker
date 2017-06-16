@@ -1,0 +1,8 @@
+@{
+  Layout = "Shared/_layout.cshtml";
+}
+
+@foreach(var band in @Model)
+{
+  <p>@band.GetName()</p>
+}

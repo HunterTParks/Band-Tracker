@@ -1,0 +1,8 @@
+@{
+  Layout = "Shared/_layout.cshtml";
+}
+
+@foreach(var venue in @Model)
+{
+  <p>@venue.GetName()</p>
+}
