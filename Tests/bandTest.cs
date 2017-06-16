@@ -29,7 +29,7 @@ namespace BandTracker
       controlBand.Save();
 
       Band newBand = Band.GetAll()[0];
-      Assert.Equal(controlBand, newBand);
+      Assert.Equal(controlBand.GetName(), newBand.GetName());
     }
 
     public void Dispose()
