@@ -16,7 +16,7 @@ namespace BandTracker
     [Fact]
     public void CheckIfDataBaseIsEmpty_Empty_Band()
     {
-      List<Band> testList = Venue.GetAll();
+      List<Band> testList = Band.GetAll();
       List<Band> controlList = new List<Band>{};
 
       Assert.Equal(controlList, testList);

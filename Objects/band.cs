@@ -25,7 +25,7 @@ namespace BandTracker
       return _name;
     }
 
-    public static DeleteAll()
+    public static void DeleteAll()
     {
       SqlConnection conn = DB.Connection();
       conn.Open();
