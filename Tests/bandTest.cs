@@ -58,18 +58,18 @@ namespace BandTracker
       Venue newVenue = new Venue("Warped Tour");
       newVenue.Save();
 
-      Venue newVenue2 = New Venue("Rose Quarter");
+      Venue newVenue2 = new Venue("Rose Quarter");
       newVenue2.Save();
 
       Band newBand1 = new Band("Issues");
       newBand1.Save();
 
-      newBand1.AddVenue(newVenue());
+      newBand1.AddVenue(newVenue);
 
       List<Venue> testList = newBand1.GetVenues();
       List<Venue> controlList = new List<Band>{newVenue, newVenue2};
 
-      Assert.Equal(controlList[0].GetName(), testList[0].GetName())
+      Assert.Equal(controlList[0].GetName(), testList[0].GetName());
 
     }
 
