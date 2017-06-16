@@ -67,7 +67,7 @@ namespace BandTracker
       newBand1.AddVenue(newVenue);
 
       List<Venue> testList = newBand1.GetVenues();
-      List<Venue> controlList = new List<Band>{newVenue, newVenue2};
+      List<Venue> controlList = new List<Venue>{newVenue, newVenue2};
 
       Assert.Equal(controlList[0].GetName(), testList[0].GetName());
 
