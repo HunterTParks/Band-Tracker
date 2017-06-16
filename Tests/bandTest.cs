@@ -41,6 +41,17 @@ namespace BandTracker
       Assert.Equal(controlBand.GetName(), testBand.GetName());
     }
 
+    [Fact]
+    public void FindBandInDataBase_id_Band()
+    {
+      Band controlBand = new Band("Nirvana");
+      controlBand.Save();
+
+      Band newBand = Band.Find(controlBand.GetId());
+
+      Assert.Equal(controlBand.GetName(), newBand.GetName());
+    }
+
     public void Dispose()
     {
       Band.DeleteAll();
