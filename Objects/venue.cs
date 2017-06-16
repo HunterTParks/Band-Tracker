@@ -25,24 +25,24 @@ namespace BandTracker
       return _name;
     }
 
-    public override bool Equals(System.Object otherVenue)
-    {
-      if(!(otherVenue is Venue))
-      {
-        return false;
-      }
-      else
-      {
-        Venue newVenue = (Venue) otherVenue;
-        bool nameEquality = this.GetName() == otherVenue.GetName();
-        bool idEquality = this.GetId() == otherVenue.GetId();
-        return (nameEquality && idEquality);
-      }
-    }
+    // public override bool Equals(System.Object otherVenue)
+    // {
+    //   if(!(otherVenue is Venue))
+    //   {
+    //     return false;
+    //   }
+    //   else
+    //   {
+    //     Venue newVenue = (Venue) otherVenue;
+    //     bool nameEquality = this.GetName() == otherVenue.GetName();
+    //     bool idEquality = this.GetId() == otherVenue.GetId();
+    //     return (nameEquality && idEquality);
+    //   }
+    // }
 
     public static List<Venue> GetAll()
     {
-      SqlConnection conn = Db.Connection();
+      SqlConnection conn = DB.Connection();
       conn.Open();
 
       SqlCommand cmd = new SqlCommand("SELECT * FROM venues", conn);
@@ -71,9 +71,9 @@ namespace BandTracker
       return venues;
     }
 
-    public static DeleteAll()
+    public static void DeleteAll()
     {
-      SqlConnection conn = Db.Connection();
+      SqlConnection conn = DB.Connection();
       conn.Open();
 
       SqlCommand cmd = new SqlCommand("DELETE FROM venues", conn);

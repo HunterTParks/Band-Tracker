@@ -9,8 +9,8 @@ namespace BandTracker
   {
     public venueTests()
     {
-      // DBConfiguration.ConnectionString = "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=university_test;Integrated Security=SSPI;";
-      DBConfiguration.ConnectionString = "Data Source=GAMING-PC;Initial Catalog=university_test;Integrated Security=SSPI;";
+      // DBConfiguration.ConnectionString = "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=band_tracker;Integrated Security=SSPI;";
+      DBConfiguration.ConnectionString = "Data Source=GAMING-PC;Initial Catalog=band_tracker;Integrated Security=SSPI;";
     }
 
     [Fact]
