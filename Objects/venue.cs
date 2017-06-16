@@ -14,5 +14,15 @@ namespace BandTracker
       _id = id;
       _name = name;
     }
+
+    public int GetId()
+    {
+      return _id;
+    }
+
+    public string GetName()
+    {
+      return _name;
+    }
   }
 }
