@@ -56,23 +56,19 @@ namespace BandTracker
     {
       Venue newVenue = new Venue("Woodstock");
       newVenue.Save();
+
       Band newBand1 = new Band("Bob Dylan");
       newBand1.Save();
+
       Band newBand2 = new Band("Nirvana");
       newBand2.Save();
 
       newVenue.AddBand(newBand1);
-      newVenue.AddBand(newBand2);
-
-      foreach(var items in newVenue.GetBands())
-      {
-        Console.WriteLine(items.GetName());
-      }
 
       List<Band> testList = newVenue.GetBands();
       List<Band> controlList = new List<Band>{newBand1, newBand2};
 
-      Assert.Equal(controlList, testList);
+      Assert.Equal(controlList[0].GetName(), testList[0].GetName());
     }
 
     public void Dispose()
