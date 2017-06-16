@@ -4,5 +4,5 @@
 
 @foreach(var band in @Model)
 {
-  <p>@band.GetName()</p>
+  <p><a href="/bands/@band.GetId()">@band.GetName()</a></p>
 }

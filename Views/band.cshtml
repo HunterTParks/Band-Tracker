@@ -1,0 +1,10 @@
+@{
+  Layout = "Shared/_layout.cshtml";
+}
+
+<ul> @Model.GetName()
+  @foreach(var model in @GetVenues())
+    {
+      <li>@model</li>
+    }
+</ul>
