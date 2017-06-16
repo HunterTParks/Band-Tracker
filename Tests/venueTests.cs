@@ -21,5 +21,10 @@ namespace BandTracker
 
       Assert.Equal(controlList, testList);
     }
+
+    public void Dispose()
+    {
+      Venue.DeleteAll();
+    }
   }
 }
