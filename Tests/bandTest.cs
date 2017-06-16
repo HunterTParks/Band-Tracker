@@ -51,7 +51,7 @@ namespace BandTracker
 
       Assert.Equal(controlBand.GetName(), newBand.GetName());
     }
-
+    
     public void Dispose()
     {
       Band.DeleteAll();
