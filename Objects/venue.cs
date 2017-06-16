@@ -42,7 +42,7 @@ namespace BandTracker
 
     public static List<Venue> GetAll()
     {
-      SqlConnection conn = DB.Connection();
+      SqlConnection conn = Db.Connection();
       conn.Open();
 
       SqlCommand cmd = new SqlCommand("SELECT * FROM venues", conn);
@@ -62,6 +62,22 @@ namespace BandTracker
       {
         rdr.Close();
       }
+
+      if(conn != null)
+      {
+        conn.Close();
+      }
+
+      return venues;
+    }
+
+    public static DeleteAll()
+    {
+      SqlConnection conn = Db.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("DELETE FROM venues", conn);
+      cmd.ExecuteNonQuery();
 
       if(conn != null)
       {
