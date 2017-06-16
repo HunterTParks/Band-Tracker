@@ -32,6 +32,14 @@ namespace BandTracker
       Assert.Equal(controlVenue, newVenue);
     }
 
+    [Fact]
+    public void CheckForDuplicate_Venue_True()
+    {
+      Venue controlVenue = new Venue("SuperBowl");
+      Venue newVenue = new Venue("SuperBowl");
+      Assert.Equal(controlVenue, newVenue);
+    }
+
     public void Dispose()
     {
       Venue.DeleteAll();
