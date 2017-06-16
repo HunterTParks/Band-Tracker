@@ -10,7 +10,7 @@ namespace BandTracker
     public venueTests()
     {
       // DBConfiguration.ConnectionString = "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=band_tracker;Integrated Security=SSPI;";
-      DBConfiguration.ConnectionString = "Data Source=GAMING-PC;Initial Catalog=band_tracker;Integrated Security=SSPI;";
+      DBConfiguration.ConnectionString = "Data Source=GAMING-PC;Initial Catalog=band_tracker_test;Integrated Security=SSPI;";
     }
 
     [Fact]
@@ -56,13 +56,18 @@ namespace BandTracker
     {
       Venue newVenue = new Venue("Woodstock");
       newVenue.Save();
-      Band newBand1 = new Band("Nirvana");
+      Band newBand1 = new Band("Bob Dylan");
       newBand1.Save();
       Band newBand2 = new Band("Nirvana");
       newBand2.Save();
 
       newVenue.AddBand(newBand1);
       newVenue.AddBand(newBand2);
+
+      foreach(var items in newVenue.GetBands())
+      {
+        Console.WriteLine(items.GetName());
+      }
 
       List<Band> testList = newVenue.GetBands();
       List<Band> controlList = new List<Band>{newBand1, newBand2};
