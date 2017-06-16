@@ -140,7 +140,7 @@ namespace BandTracker
 
       SqlCommand cmd = new SqlCommand("INSERT INTO bands_venues (band_id, venue_id) VALUES (@band_Id, @venue_id);", conn);
       SqlParameter BandIdParam = new SqlParameter("@band_Id", BandToAdd.GetId());
-      SqlParameter VenueIdParam = new SqlParameter("venue_id", this.GetId());
+      SqlParameter VenueIdParam = new SqlParameter("@venue_id", this.GetId());
 
       cmd.Parameters.Add(BandIdParam);
       cmd.Parameters.Add(VenueIdParam);
