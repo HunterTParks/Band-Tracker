@@ -13,6 +13,13 @@ namespace BandTracker
       DBConfiguration.ConnectionString = "Data Source=GAMING-PC;Initial Catalog=university_test;Integrated Security=SSPI;";
     }
 
-    
+    [Fact]
+    public void CheckIfDataBaseIsEmpty_Empty_Venue()
+    {
+      List<Venue> testList = Venue.GetAll();
+      List<Venue> controlList = new List<Venue>{};
+
+      Assert.Equal(controlList, testList);
+    }
   }
 }
