@@ -25,6 +25,37 @@ namespace BandTracker
       return _name;
     }
 
+    public static List<Band> GetAll()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("SELECT * FROM bands", conn);
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      List<Band> bands = new List<Band>{};
+
+      while(rdr.Read())
+      {
+        int id = rdr.GetInt32(0);
+        string name = rdr.GetString(1);
+        Band newBand = new Band(name, id);
+        bands.Add(newBand);
+      }
+
+      if(rdr != null)
+      {
+        rdr.Close();
+      }
+
+      if(conn != null)
+      {
+        conn.Close();
+      }
+
+      return bands;
+    }
+
     public static void DeleteAll()
     {
       SqlConnection conn = DB.Connection();
