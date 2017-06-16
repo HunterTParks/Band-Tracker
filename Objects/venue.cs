@@ -9,7 +9,7 @@ namespace BandTracker
     private int _id;
     private string _name;
 
-    public Venue(int id, string name)
+    public Venue(string name, int id = 0)
     {
       _id = id;
       _name = name;
