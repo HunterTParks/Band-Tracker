@@ -24,5 +24,20 @@ namespace BandTracker
     {
       return _name;
     }
+
+    public override bool Equals(System.Object otherVenue)
+    {
+      if(!(otherVenue is Venue))
+      {
+        return false;
+      }
+      else
+      {
+        Venue newVenue = (Venue) otherVenue;
+        bool nameEquality = this.GetName() == otherVenue.GetName();
+        bool idEquality = this.GetId() == otherVenue.GetId();
+        return (nameEquality && idEquality);
+      }
+    }
   }
 }
