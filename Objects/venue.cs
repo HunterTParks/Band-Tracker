@@ -98,6 +98,41 @@ namespace BandTracker
       }
     }
 
+    public static Venue Find(int IdToFind)
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("SELECT * FROM venues WHERE id = @VenueId", conn);
+      SqlParameter idParam = new SqlParameter("@VenueId", IdToFind);
+      cmd.Parameters.Add(idParam);
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      int id = 0;
+      string name = null;
+
+      while(rdr.Read())
+      {
+        id = rdr.GetInt32(0);
+        name = rdr.GetString(1);
+      }
+
+      Venue newVenue = new Venue(name, id);
+
+      if(rdr != null)
+      {
+        rdr.Close();
+      }
+
+      if(conn != null)
+      {
+        conn.Close();
+      }
+
+      return newVenue;
+    }
+
     public static void DeleteAll()
     {
       SqlConnection conn = DB.Connection();
