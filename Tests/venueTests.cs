@@ -40,6 +40,17 @@ namespace BandTracker
       Assert.Equal(controlVenue, newVenue);
     }
 
+    [Fact]
+    public void FindVenueInDatabase_id_Venue()
+    {
+      Venue controlVenue = new Venue("SuperBowl");
+      controlVenue.Save();
+
+      Venue newVenue = Venue.Find(ControlVenue.GetId());
+
+      Assert.Equal(controlVenue, newVenue);
+    }
+
     public void Dispose()
     {
       Venue.DeleteAll();
