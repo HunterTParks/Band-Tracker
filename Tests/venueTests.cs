@@ -22,6 +22,16 @@ namespace BandTracker
       Assert.Equal(controlList, testList);
     }
 
+    [Fact]
+    public void SaveToDataBase_Venue_Venue()
+    {
+      Venue controlVenue = new Venue("SuperBowl");
+      controlVenue.Save();
+
+      Venue newVenue = Venue.GetAll()[0];
+      Assert.Equal(controlVenue, newVenue);
+    }
+
     public void Dispose()
     {
       Venue.DeleteAll();
