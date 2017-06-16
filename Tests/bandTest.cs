@@ -32,6 +32,15 @@ namespace BandTracker
       Assert.Equal(controlBand.GetName(), newBand.GetName());
     }
 
+    [Fact]
+    public void CheckForDuplicate_Band_True()
+    {
+      Band controlBand = new Band("Nirvana");
+      Band testBand = new Band("Nirvana");
+
+      Assert.Equal(controlBand.GetName(), testBand.GetName());
+    }
+
     public void Dispose()
     {
       Band.DeleteAll();
