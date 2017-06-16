@@ -4,5 +4,13 @@
 
 @foreach(var venue in @Model)
 {
-  <p>@venue.GetName()</p>
+  <p><a href = "/venues/@venue.GetId()">@venue.GetName()</a></p>
 }
+
+<form action="/venues/delete_all" method="post">
+  <input type="hidden" name="_method" value="DELETE">
+  <button type="submit" name="button">Delete All</button>
+
+</form>
+
+<a href="/">Click Here</a> to go home!

@@ -158,13 +158,15 @@ namespace BandTracker
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("SELECT bands.* FROM venues JOIN bands_venues ON (venue_id = bands_venues.venue_id) JOIN bands ON (band_id = bands_venues.band_id) WHERE venue_id = @Venue_id;", conn);
+      SqlCommand cmd = new SqlCommand("SELECT bands.* FROM venues JOIN bands_venues ON (venue_id = bands_venues.venue_id) JOIN bands ON (bands_venues.band_id = band_id) WHERE venue_id = @Venue_Id;", conn);
+
       SqlParameter VenueIdParam = new SqlParameter("@Venue_id", this.GetId());
       cmd.Parameters.Add(VenueIdParam);
 
       SqlDataReader rdr = cmd.ExecuteReader();
 
       List<Band> bands = new List<Band>{};
+
       while(rdr.Read())
       {
         int id = rdr.GetInt32(0);
@@ -184,7 +186,41 @@ namespace BandTracker
       }
 
       return bands;
+    }
 
+    public void Update(string newName)
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("UPDATE venues SET name = @NewName OUTPUT INSERTED.name WHERE id = @venueId;", conn);
+
+      SqlParameter newNameParameter = new SqlParameter();
+      newNameParameter.ParameterName = "@NewName";
+      newNameParameter.Value = newName;
+      cmd.Parameters.Add(newNameParameter);
+
+
+      SqlParameter categoryIdParameter = new SqlParameter();
+      categoryIdParameter.ParameterName = "@venueId";
+      categoryIdParameter.Value = this.GetId();
+      cmd.Parameters.Add(categoryIdParameter);
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      while(rdr.Read())
+      {
+        this._name = rdr.GetString(0);
+      }
+
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+
+      if (conn != null)
+      {
+        conn.Close();
+      }
     }
 
     public static void DeleteAll()

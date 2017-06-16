@@ -1,0 +1,33 @@
+@{
+  Layout = "Shared/_layout.cshtml";
+}
+
+<ul>
+
+  @foreach(var item in @Model.GetBands())
+  {
+    <form action="/band/@item.GetId()/delete" method="post">
+      <input type="hidden" name="_method" value="DELETE">
+      <li>@item.GetName()</li>
+      <button type="submit" name="button">Delete</button>
+
+    </form>
+  }
+</ul>
+
+<p>
+  <a href="/venue/edit/@Model.GetId()">Click here</a> to edit this venue!
+</p>
+
+<form action="/venue/delete/@Model.GetId()" method="post">
+  <input type="hidden" name="_method" value="DELETE">
+  <button type="submit" name="button">DELETE EVERYTHING</button>
+
+</form>
+
+
+<a href="/">Click Here</a> to go home!
+
+<!-- <p>
+  <a href="/venue/delete/@Model.GetId()">Click here</a> to delete everything
+</p> -->

@@ -1,0 +1,12 @@
+@{
+  Layout = "Shared/_layout.cshtml";
+}
+
+<form action="/venue/edit/@Model.GetId()/success" method="post">
+  <h2>Edit category: @Model.GetName()</h2>
+  <input type="hidden" name="_method" value="PATCH">
+  <label for="name-update">New name</label>
+  <input id="name-update" name="name-update" type="text">
+</form>
+
+<a href="/">Click Here</a> to go home!

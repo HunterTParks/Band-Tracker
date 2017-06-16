@@ -2,9 +2,14 @@
   Layout = "Shared/_layout.cshtml";
 }
 
-<ul> @Model.GetName()
-  @foreach(var model in @GetVenues())
-    {
-      <li>@model</li>
-    }
+<ul>
+  @foreach(var item in @Model)
+  {
+    <li>@item.GetName()</li>
+  }
+
+  <!-- Where would you like this band to go?
+  <form action="" method="post">
+
+  </form> -->
 </ul>

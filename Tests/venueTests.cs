@@ -68,7 +68,7 @@ namespace BandTracker
       List<Band> testList = newVenue.GetBands();
       List<Band> controlList = new List<Band>{newBand1, newBand2};
 
-      Assert.Equal(controlList[0].GetName(), testList[0].GetName());
+      Assert.Equal(controlList, testList);
     }
 
     public void Dispose()
