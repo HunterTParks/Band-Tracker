@@ -25,20 +25,20 @@ namespace BandTracker
       return _name;
     }
 
-    // public override bool Equals(System.Object otherVenue)
-    // {
-    //   if(!(otherVenue is Venue))
-    //   {
-    //     return false;
-    //   }
-    //   else
-    //   {
-    //     Venue newVenue = (Venue) otherVenue;
-    //     bool nameEquality = this.GetName() == otherVenue.GetName();
-    //     bool idEquality = this.GetId() == otherVenue.GetId();
-    //     return (nameEquality && idEquality);
-    //   }
-    // }
+    public override bool Equals(System.Object otherVenue)
+    {
+      if(!(otherVenue is Venue))
+      {
+        return false;
+      }
+      else
+      {
+        Venue newVenue = (Venue) otherVenue;
+        bool nameEquality = this.GetName() == newVenue.GetName();
+        bool idEquality = this.GetId() == newVenue.GetId();
+        return (nameEquality && idEquality);
+      }
+    }
 
     public static List<Venue> GetAll()
     {
@@ -139,10 +139,11 @@ namespace BandTracker
       conn.Open();
 
       SqlCommand cmd = new SqlCommand("INSERT INTO bands_venues (band_id, venue_id) VALUES (@band_Id, @venue_id);", conn);
-      SqlParameter BandIdParam = new SqlParameter("@band_Id", BandToAdd.GetId());
-      SqlParameter VenueIdParam = new SqlParameter("@venue_id", this.GetId());
 
+      SqlParameter BandIdParam = new SqlParameter("@band_Id", BandToAdd.GetId());
       cmd.Parameters.Add(BandIdParam);
+
+      SqlParameter VenueIdParam = new SqlParameter("@venue_id", this.GetId());
       cmd.Parameters.Add(VenueIdParam);
 
       cmd.ExecuteNonQuery();
@@ -158,14 +159,14 @@ namespace BandTracker
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("SELECT bands.* FROM venues JOIN bands_venues ON (venue_id = bands_venues.venue_id) JOIN bands ON (bands_venues.band_id = band_id) WHERE venue_id = @Venue_Id;", conn);
+      SqlCommand cmd = new SqlCommand("SELECT bands.* FROM venues JOIN bands_venues ON (venues.id = bands_venues.venue_id) JOIN bands ON (bands.id = bands_venues.band_id) WHERE venue_id = @Venue_Id;", conn);
 
       SqlParameter VenueIdParam = new SqlParameter("@Venue_id", this.GetId());
       cmd.Parameters.Add(VenueIdParam);
 
-      SqlDataReader rdr = cmd.ExecuteReader();
-
       List<Band> bands = new List<Band>{};
+
+      SqlDataReader rdr = cmd.ExecuteReader();
 
       while(rdr.Read())
       {

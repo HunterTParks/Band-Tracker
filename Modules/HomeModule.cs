@@ -44,8 +44,11 @@ namespace BandTracker
 
       Get["/bands/{id}"] = parameters => {
         Band findBand = Band.Find(parameters.id);
-        List<Venue> selectedVenues = findBand.GetVenues();
-        return View["band.cshtml", selectedVenues];
+        List<Venue> allVenues = Venue.GetAll();
+        Dictionary<string, object> model = new Dictionary<string, object>{};
+        model.Add("band", findBand);
+        model.Add("allVenues", allVenues);
+        return View["band.cshtml", model];
       };
 
       Get["/venues/{id}"] = parameters => {
@@ -61,6 +64,13 @@ namespace BandTracker
       Post["/venue/add"] = _ => {
         Venue newVenue = new Venue(Request.Form["new-venue"]);
         newVenue.Save();
+        return View["success.cshtml"];
+      };
+
+      Post["/band/{id}/added_to_venue"] = parameters => {
+        Venue findVenue = Venue.Find(Request.Form["addVenue"]);
+        Band findBand = Band.Find(parameters.id);
+        findVenue.AddBand(findBand);
         return View["success.cshtml"];
       };
 

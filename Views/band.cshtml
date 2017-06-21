@@ -3,13 +3,31 @@
 }
 
 <ul>
-  @foreach(var item in @Model)
+  @foreach(var item in @Model["band"].GetVenues())
   {
     <li>@item.GetName()</li>
   }
 
-  <!-- Where would you like this band to go?
-  <form action="" method="post">
+  Where would you like this band to go?
+  <form action="/band/@Model["band"].GetId()/added_to_venue/" method="post">
+    <select name="addVenue">
+      @foreach(var venue in @Model["allVenues"])
+      {
+        @if(@Model["band"].GetVenues().Count < 1)
+        {
+          <option value="@venue.GetId()">@venue.GetName()</option>
+        }
+        @foreach(var selectedVenue in @Model["band"].GetVenues())
+        {
+          @if(!(venue == selectedVenue))
+          {
+            <option value="@selectedVenue">TEST</option>
+          }
+          <option value="1">TEST</option>
+        }
+      }
+    </select>
 
-  </form> -->
+    <button type="submit" name="button">Submit</button>
+  </form>
 </ul>

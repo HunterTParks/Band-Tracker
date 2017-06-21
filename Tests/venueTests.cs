@@ -29,7 +29,7 @@ namespace BandTracker
       controlVenue.Save();
 
       Venue newVenue = Venue.GetAll()[0];
-      Assert.Equal(controlVenue.GetName(), newVenue.GetName());
+      Assert.Equal(controlVenue, newVenue);
     }
 
     [Fact]
@@ -37,7 +37,7 @@ namespace BandTracker
     {
       Venue controlVenue = new Venue("SuperBowl");
       Venue newVenue = new Venue("SuperBowl");
-      Assert.Equal(controlVenue.GetName(), newVenue.GetName());
+      Assert.Equal(controlVenue, newVenue);
     }
 
     [Fact]
@@ -48,7 +48,7 @@ namespace BandTracker
 
       Venue newVenue = Venue.Find(controlVenue.GetId());
 
-      Assert.Equal(controlVenue.GetName(), newVenue.GetName());
+      Assert.Equal(controlVenue, newVenue);
     }
 
     [Fact]

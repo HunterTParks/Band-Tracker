@@ -1,6 +1,8 @@
 using Xunit;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace BandTracker
 {
@@ -11,6 +13,14 @@ namespace BandTracker
     {
       DBConfiguration.ConnectionString = "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=band_tracker_test;Integrated Security=SSPI;";
       // DBConfiguration.ConnectionString = "Data Source=GAMING-PC;Initial Catalog=band_tracker_test;Integrated Security=SSPI;";
+    }
+
+    [Fact]
+    public void Test_Equal_ReturnsTrueIfObjectIsSame()
+    {
+      Band controlBand = new Band("Nirvana");
+      Band testBand = new Band("Nirvana");
+      Assert.Equal(controlBand, testBand);
     }
 
     [Fact]
@@ -29,16 +39,7 @@ namespace BandTracker
       controlBand.Save();
 
       Band newBand = Band.GetAll()[0];
-      Assert.Equal(controlBand.GetName(), newBand.GetName());
-    }
-
-    [Fact]
-    public void CheckForDuplicate_Band_True()
-    {
-      Band controlBand = new Band("Nirvana");
-      Band testBand = new Band("Nirvana");
-
-      Assert.Equal(controlBand.GetName(), testBand.GetName());
+      Assert.Equal(controlBand, newBand);
     }
 
     [Fact]
@@ -49,7 +50,7 @@ namespace BandTracker
 
       Band newBand = Band.Find(controlBand.GetId());
 
-      Assert.Equal(controlBand.GetName(), newBand.GetName());
+      Assert.Equal(controlBand, newBand);
     }
 
     [Fact]
@@ -69,7 +70,7 @@ namespace BandTracker
       List<Venue> testList = newBand1.GetVenues();
       List<Venue> controlList = new List<Venue>{newVenue, newVenue2};
 
-      Assert.Equal(controlList[0].GetName(), testList[0].GetName());
+      Assert.Equal(controlList[0], testList[0]);
 
     }
 

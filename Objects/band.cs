@@ -25,6 +25,21 @@ namespace BandTracker
       return _name;
     }
 
+    public override bool Equals(System.Object otherBand)
+    {
+      if (!(otherBand is Band))
+      {
+        return false;
+      }
+      else
+      {
+        Band newBand = (Band) otherBand;
+        bool idEquality = (newBand.GetId() == this.GetId());
+        bool nameEquality = (newBand.GetName() == this.GetName());
+        return (idEquality && nameEquality);
+      }
+    }
+
     public static List<Band> GetAll()
     {
       SqlConnection conn = DB.Connection();
