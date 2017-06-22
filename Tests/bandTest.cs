@@ -11,8 +11,8 @@ namespace BandTracker
   {
     public bandTests()
     {
-      DBConfiguration.ConnectionString = "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=band_tracker_test;Integrated Security=SSPI;";
-      // DBConfiguration.ConnectionString = "Data Source=GAMING-PC;Initial Catalog=band_tracker_test;Integrated Security=SSPI;";
+      // DBConfiguration.ConnectionString = "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=band_tracker_test;Integrated Security=SSPI;";
+      DBConfiguration.ConnectionString = "Data Source=GAMING-PC;Initial Catalog=band_tracker_test;Integrated Security=SSPI;";
     }
 
     [Fact]
@@ -56,21 +56,25 @@ namespace BandTracker
     [Fact]
     public void AddVenueToBand_Venue_Venue()
     {
+      Band newBand1 = new Band("Issues");
+      newBand1.Save();
+
       Venue newVenue = new Venue("Warped Tour");
       newVenue.Save();
 
       Venue newVenue2 = new Venue("Rose Quarter");
       newVenue2.Save();
 
-      Band newBand1 = new Band("Issues");
-      newBand1.Save();
-
       newBand1.AddVenue(newVenue);
+      // newBand1.AddVenue(newVenue2);
 
       List<Venue> testList = newBand1.GetVenues();
       List<Venue> controlList = new List<Venue>{newVenue, newVenue2};
 
-      Assert.Equal(controlList[0], testList[0]);
+      Console.WriteLine(testList[0].GetName());
+      Console.WriteLine(testList[1].GetName());
+
+      Assert.Equal(controlList, testList);
 
     }
 

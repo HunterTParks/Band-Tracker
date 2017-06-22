@@ -5,6 +5,7 @@
 <ul>
   @foreach(var item in @Model["band"].GetVenues())
   {
+    Console.WriteLine(item.GetName());
     <li>@item.GetName()</li>
   }
 
